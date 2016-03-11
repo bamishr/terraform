@@ -26,3 +26,9 @@ terraform {
     google-beta = ">= 2.19.0, <4.0.0"
   }
 }
+terraform {
+  required_version = ">=0.12.6, <0.14"
+  required_providers {
+    google-beta = ">= 2.19.0, <4.0.0"
+  }
+}
