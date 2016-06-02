@@ -166,6 +166,11 @@ steps:
     - create submodule-network-peering-local
   name: 'gcr.io/cloud-foundation-cicd/$_DOCKER_IMAGE_DEVELOPER_TOOLS:$_DOCKER_TAG_VERSION_DEVELOPER_TOOLS'
   args: ['/bin/bash', '-c', 'source /usr/local/bin/task_helper_functions.sh && kitchen_do converge submodule-network-peering-local']
+  - id: converge submodule-network-peering-local
+  waitFor:
+    - create submodule-network-peering-local
+  name: 'gcr.io/cloud-foundation-cicd/$_DOCKER_IMAGE_DEVELOPER_TOOLS:$_DOCKER_TAG_VERSION_DEVELOPER_TOOLS'
+  args: ['/bin/bash', '-c', 'source /usr/local/bin/task_helper_functions.sh && kitchen_do converge submodule-network-peering-local']
 tags:
 - 'ci'
 - 'integration'
