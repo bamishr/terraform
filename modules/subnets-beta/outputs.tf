@@ -18,3 +18,22 @@ output "subnets" {
   value       = google_compute_subnetwork.subnetwork
   description = "The created subnet resources"
 }
+  network     = var.network_name
+  project     = var.project_id
+  description = lookup(each.value, "description", null)
+  secondary_ip_range = [
+    for i in range(
+      length(
+        contains(
+        keys(var.secondary_ranges), each.value.subnet_name) == true
+        ? var.secondary_ranges[each.value.subnet_name]
+        : []
+    )) :
+    var.secondary_ranges[each.value.subnet_name][i]
+  ]
+
+  purpose = lookup(each.value, "purpose", null)
+  role    = lookup(each.value, "role", null)
+
+  depends_on = [var.module_depends_on]
+}
