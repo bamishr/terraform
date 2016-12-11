@@ -100,6 +100,23 @@ resource "google_compute_forwarding_rule" "this" {
   load_balancing_scheme = "INTERNAL"
   all_ports             = true
 }
+provider "google" {
+  version = "~> 2.19.0"
+}
+
+provider "google-beta" {
+  version = "~> 2.19.0"
+}
+
+provider "null" {
+  version = "~> 2.1"
+}
+
+module "vpc" {
+  source       = "../../modules/vpc"
+  network_name = var.network_name
+  project_id   = var.project_id
+}
 
 module "routes" {
   source       = "../../modules/routes-beta"
